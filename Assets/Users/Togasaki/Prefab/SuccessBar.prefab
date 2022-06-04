@@ -134,6 +134,7 @@ MonoBehaviour:
   - {fileID: 5333311517489964741, guid: 834c7ed5698310c43be89e6341d7dc41, type: 3}
   - {fileID: 4072081374840936204, guid: b97860e6fc440634797e4354b28988e1, type: 3}
   - {fileID: 1726427072440726975, guid: bef194e62cb006449bbcbe63ea0b22e6, type: 3}
+  barSpeed: 1
 --- !u!1 &8401767114126445758
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +206,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 342114316809949061}
   missColor: {r: 0.8, g: 0, b: 0, a: 0}
   delayTime: 0
+  notes: {fileID: 342114316809949062}
 --- !u!54 &901359835789934282
 Rigidbody:
   m_ObjectHideFlags: 0

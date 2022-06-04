@@ -13,6 +13,10 @@ public class NotesEnd : MonoBehaviour, INotes
     [SerializeField, Header("ディレイ")]
     private float delayTime;
 
+    [SerializeField, Header("ノーツ")]
+    private GameObject notes;
+
+
     /// <summary>
     /// ミスした時の処理
     /// HPを減らし、ノーツを消す
@@ -20,6 +24,7 @@ public class NotesEnd : MonoBehaviour, INotes
     public void EnterNotification()
     {
         //HPを減らす処理
+        NotesManager.Instance.bar.TakeDamage();
 
         //ノーツを消す処理
         StartCoroutine("MissPerformance");
@@ -30,6 +35,7 @@ public class NotesEnd : MonoBehaviour, INotes
     /// </summary>
     IEnumerator MissPerformance()
     {
+        notes.GetComponent<Notes>().tokenSource.Cancel();
         meshRenderer.material.color = missColor;
 
         yield return new WaitForSeconds(delayTime);

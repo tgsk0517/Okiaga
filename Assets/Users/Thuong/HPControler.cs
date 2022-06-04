@@ -13,16 +13,18 @@ public class HPControler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            TakeDamage();
-        }
-        _healthBar.SetHealth(PlayerStatus.HP);   
-    }
-    void TakeDamage()// hp減らす関数
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown("space"))
+    //    {
+    //        TakeDamage();
+    //    }
+    //    _healthBar.SetHealth(PlayerStatus.HP);   
+    //}
+    public void TakeDamage()// hp減らす関数
     {
         PlayerStatus.HP -= 10;
+        _healthBar.SetHealth(PlayerStatus.HP);
+
     }
 }
