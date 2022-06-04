@@ -17,8 +17,12 @@ public class HPControler : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            PlayerStatus.HP -= 10;
+            TakeDamage();
         }
         _healthBar.SetHealth(PlayerStatus.HP);   
+    }
+    void TakeDamage()// hp減らす関数
+    {
+        PlayerStatus.HP -= 10;
     }
 }
