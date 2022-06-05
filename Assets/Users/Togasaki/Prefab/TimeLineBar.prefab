@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 9165415517521740808}
   - component: {fileID: 9165415517521740815}
   - component: {fileID: 9165415517521740810}
+  - component: {fileID: -8737810892378132959}
   m_Layer: 0
   m_Name: TimeLineBar
   m_TagString: Untagged
@@ -306,6 +307,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9f4139ad4f6344382a53f04424a95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {fileID: 0}
-  endPos: {fileID: 0}
-  barSpeed: 3
+--- !u!54 &-8737810892378132959
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9165415517521740813}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

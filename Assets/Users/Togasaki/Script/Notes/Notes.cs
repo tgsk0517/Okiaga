@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Notes : MonoBehaviour,INotes
 {
-    [SerializeField, Header("爆発obj")]
-    private GameObject[] bombObj;
-
     public CancellationTokenSource tokenSource = new CancellationTokenSource();
     CancellationToken token;
 
@@ -17,14 +16,21 @@ public class Notes : MonoBehaviour,INotes
     /// </summary>
     public float barSpeed = 1f;
 
+    /// <summary>
+    /// 叩く回数
+    /// </summary>
+    public int attackNum =1;
+
+    [SerializeField, Header("テキスト")]
+    private TextMeshProUGUI txt;
+
+    public int typeNum =0;
+
+    public bool isFailed = false;
+
     private void Awake()
     {
         token = tokenSource.Token;
-    }
-
-    private void Start()
-    {
-        BarInit();
     }
 
     private void FixedUpdate()
@@ -32,10 +38,10 @@ public class Notes : MonoBehaviour,INotes
         MoveToEnd();
     }
 
-
-    private void BarInit()
+    public void BarInit()
     {
         transform.position = NotesManager.Instance.startPos.position;
+        txt.text = attackNum.ToString();
     }
 
     /// <summary>
@@ -43,8 +49,17 @@ public class Notes : MonoBehaviour,INotes
     /// </summary>
     private void MoveToEnd()
     {
-        transform.position = Vector3.MoveTowards(transform.position, NotesManager.Instance.endPos.position, barSpeed * Time.deltaTime);
-
+        switch(typeNum)
+        {
+            case 0:
+                transform.position = Vector3.MoveTowards(transform.position, NotesManager.Instance.endPos.position, barSpeed * Time.deltaTime);
+                break;
+            case 1:
+                transform.position = Vector3.MoveTowards(transform.position, NotesManager.Instance.mugenEndPos.position, barSpeed * Time.deltaTime);
+                break;
+            default:
+                break;
+        }
     }
 
     /// <summary>
@@ -52,25 +67,18 @@ public class Notes : MonoBehaviour,INotes
     /// </summary>
     public void EnterNotification()
     {
-        Judge().Forget();
+        Judge();
     }
 
-    async UniTask Judge()
+    void Judge()
     {
-        while(true)
+        attackNum--;
+        txt.text = attackNum.ToString();
+        if (attackNum <= 0)
         {
-            //TimeLineBar侵入中にスペースが押されたら
-            if(Input.GetKey(KeyCode.Space))
-            {
-                //残機を1減らし、アニメーションを呼び出したあと、自分をデストロイ
-                Instantiate(bombObj[Random.Range(0, bombObj.Length)], new Vector3(transform.position.x,transform.position.y + 3,transform.position.z), Quaternion.identity);
-
-                Destroy(gameObject);
-            }
-
-            await UniTask.Delay(20, cancellationToken: token);
+            //残機を1減らし、アニメーションを呼び出したあと、自分をデストロイ
+            Destroy(gameObject);
         }
-
     }
 
     private void OnDestroy()
@@ -78,4 +86,8 @@ public class Notes : MonoBehaviour,INotes
         tokenSource.Cancel();
     }
 
+    public void MissNotification()
+    {
+
+    }
 }

@@ -23,11 +23,17 @@ public class NotesEnd : MonoBehaviour, INotes
     /// </summary>
     public void EnterNotification()
     {
+        
+    }
+
+    public void MissNotification()
+    {
         //HP‚ğŒ¸‚ç‚·ˆ—
         NotesManager.Instance.bar.TakeDamage();
 
         //ƒm[ƒc‚ğÁ‚·ˆ—
         StartCoroutine("MissPerformance");
+
     }
 
     /// <summary>
@@ -36,10 +42,11 @@ public class NotesEnd : MonoBehaviour, INotes
     IEnumerator MissPerformance()
     {
         notes.GetComponent<Notes>().tokenSource.Cancel();
+        notes.GetComponent<Notes>().isFailed = true;
         meshRenderer.material.color = missColor;
 
-        yield return new WaitForSeconds(delayTime);
-        
+        yield return new WaitForSeconds(0.5f);
+
         Destroy(transform.parent.gameObject);
 
         yield break;

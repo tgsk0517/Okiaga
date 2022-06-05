@@ -17,6 +17,16 @@ public class NotesMarker : Marker, INotification
     /// </summary>
     public float notesWidth = 1.0f;
 
+    /// <summary>
+    /// ノートを叩く回数
+    /// </summary>
+    public int notesNum = 1;
+
+    /// <summary>
+    /// ノーツのタイプ
+    /// </summary>
+    public int type = 0;
+
     public PropertyName id
     {
         get
