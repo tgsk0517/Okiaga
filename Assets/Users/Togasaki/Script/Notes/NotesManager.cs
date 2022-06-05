@@ -48,6 +48,7 @@ public class NotesManager : SingletonMonoBehaviour<NotesManager>, INotificationR
         pd.Play();
         SoundManager.Instance.PlayBGM(BGMLabel.BGM1,false);
         await UniTask.Delay(45000, cancellationToken: tkn);
+        ShowResult();
     }
 
     void ShowResult()
