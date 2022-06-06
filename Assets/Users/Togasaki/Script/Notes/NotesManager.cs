@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class NotesManager : SingletonMonoBehaviour<NotesManager>, INotificationReceiver
 {
@@ -35,7 +36,19 @@ public class NotesManager : SingletonMonoBehaviour<NotesManager>, INotificationR
     [SerializeField]
     private PlayableDirector pd;
 
+    public float resultColorVal = 0.01f;
+    [SerializeField]
+    private GameObject resultObj;
+
     CancellationTokenSource source = new CancellationTokenSource();
+    CancellationTokenSource afterResultSource = new CancellationTokenSource();
+
+
+    [SerializeField]
+    private GameObject objthth;
+
+    [SerializeField]
+    private Rank[] rank;
 
     private void Start()
     {
@@ -53,6 +66,33 @@ public class NotesManager : SingletonMonoBehaviour<NotesManager>, INotificationR
 
     void ShowResult()
     {
+        resultObj.SetActive(true);
+        foreach(Rank r in rank)
+        {
+            r.Appear().Forget();
+        }
+        AfterResult().Forget();
+        Destroy(objthth);
+    }
+
+    async UniTask AfterResult()
+    {
+        CancellationToken tkn = afterResultSource.Token;
+        bool b = true;
+
+        await UniTask.Delay(2000,cancellationToken:tkn);
+        while(b)
+        {
+            if(Input.GetKey(KeyCode.Space))
+            {
+                b = false;
+            }
+            await UniTask.Delay(1, cancellationToken: tkn);
+        }
+
+        SceneManager.LoadScene("TitleScene");
+
+        afterResultSource.Cancel();
 
     }
 

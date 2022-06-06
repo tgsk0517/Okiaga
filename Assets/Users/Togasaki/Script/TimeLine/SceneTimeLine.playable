@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0ab215d3da16c4fbaab0e8254fd94c, type: 3}
   m_Name: "\u30CE\u30FC\u30C4\u306E\u30DE\u30FC\u30AB\u30FC"
   m_EditorClassIdentifier: 
-  m_Time: 27.5
+  m_Time: 27.666666666666668
   speed: 10
   notesWidth: 10
   notesNum: 5
