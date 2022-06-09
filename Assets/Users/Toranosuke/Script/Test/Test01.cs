@@ -13,6 +13,9 @@ public class Test01 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKey(KeyCode.Return))
+        {
+            NextSceneTransition.instance.GotoNextScene();
+        }
     }
 }
