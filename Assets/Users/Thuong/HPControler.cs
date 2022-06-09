@@ -25,6 +25,10 @@ public class HPControler : MonoBehaviour
     {
         PlayerStatus.HP -= 5;
         _healthBar.SetHealth(PlayerStatus.HP);
-
+        if(PlayerStatus.HP <= 0)
+        {
+            SoundManager.Instance.StopBGM();
+            NotesManager.Instance.ShowResult();
+        }
     }
 }

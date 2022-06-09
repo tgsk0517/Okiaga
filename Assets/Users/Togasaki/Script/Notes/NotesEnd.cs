@@ -44,6 +44,7 @@ public class NotesEnd : MonoBehaviour, INotes
         notes.GetComponent<Notes>().tokenSource.Cancel();
         notes.GetComponent<Notes>().isFailed = true;
         meshRenderer.material.color = missColor;
+        NotesManager.Instance.missNum++;
 
         yield return new WaitForSeconds(0.5f);
 

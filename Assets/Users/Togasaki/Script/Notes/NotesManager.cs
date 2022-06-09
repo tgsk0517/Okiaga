@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -50,8 +51,25 @@ public class NotesManager : SingletonMonoBehaviour<NotesManager>, INotificationR
     [SerializeField]
     private Rank[] rank;
 
+    /// <summary>
+    /// É~ÉXÇµÇΩâÒêî
+    /// </summary>
+    public int missNum = 0;
+
+    /// <summary>
+    /// ì|ÇµÇΩãNÇ´è„Ç™ÇËêî
+    /// </summary>
+    public int beatedOkiagari = 0;
+
+    [SerializeField]
+    private TextMeshProUGUI missTex;
+
+    [SerializeField]
+    private TextMeshProUGUI beatedTxt;
+
     private void Start()
     {
+        OkiagariGenerater.Instance.GenerateOkiagari();
         ini(source.Token).Forget();
     }
 
@@ -64,8 +82,10 @@ public class NotesManager : SingletonMonoBehaviour<NotesManager>, INotificationR
         ShowResult();
     }
 
-    void ShowResult()
+    public void ShowResult()
     {
+        missTex.text = missNum.ToString();
+        beatedTxt.text = beatedOkiagari.ToString();
         resultObj.SetActive(true);
         foreach(Rank r in rank)
         {

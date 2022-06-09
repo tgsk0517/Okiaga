@@ -35,7 +35,8 @@ public class Notes : MonoBehaviour,INotes
 
     private void FixedUpdate()
     {
-        MoveToEnd();
+        if (transform != null)
+            MoveToEnd();
     }
 
     public void BarInit()
@@ -73,6 +74,9 @@ public class Notes : MonoBehaviour,INotes
     void Judge()
     {
         attackNum--;
+        NotesManager.Instance.beatedOkiagari++;
+        OkiagariGenerater.Instance.DestroyOkiagari();
+        OkiagariGenerater.Instance.GenerateOkiagari();
         txt.text = attackNum.ToString();
         if (attackNum <= 0)
         {
