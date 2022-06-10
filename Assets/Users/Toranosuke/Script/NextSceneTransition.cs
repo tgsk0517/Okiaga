@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class NextSceneTransition : MonoBehaviour
+public class NextSceneTransition : SingletonMonoBehaviour<NextSceneTransition>
 {
     //キャンバスを持っておく変数
     private static Canvas canvas;

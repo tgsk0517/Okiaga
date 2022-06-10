@@ -110,7 +110,7 @@ public class NotesManager : SingletonMonoBehaviour<NotesManager>, INotificationR
             await UniTask.Delay(1, cancellationToken: tkn);
         }
 
-        SceneManager.LoadScene("TitleScene");
+        NextSceneTransition.instance.GotoNextScene();
 
         afterResultSource.Cancel();
 
