@@ -59,10 +59,10 @@ public class TimeLineBarMovement : MonoBehaviour
                         Instantiate(bombObj[Random.Range(0, bombObj.Length)], new Vector3(transform.position.x, transform.position.y + 3, transform.position.z + 10), Quaternion.identity);
                     }
                 }
-                else
-                {
-                    NotesManager.Instance.bar.TakeDamage();
-                }
+                //else
+                //{
+                //    NotesManager.Instance.bar.TakeDamage();
+                //}
             }
 
             await UniTask.Delay(1, cancellationToken: tkn);

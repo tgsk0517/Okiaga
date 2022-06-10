@@ -33,13 +33,19 @@ public class OkiagariGenerater : SingletonMonoBehaviour<OkiagariGenerater>
     /// </summary>
     private GameObject okiagariRef;
 
+    int i = 0;
+
     /// <summary>
     /// ‹N‚«ã‚ª‚è‚ğ¶¬
     /// </summary>
     public void GenerateOkiagari()
     {
-        okiagariRef = Instantiate(okiagariObj, startPos.position, Quaternion.identity);
-        okiagariRef.GetComponent<Okiagari>().MoveToHome().Forget();
+        i++;
+        if(i != 94)
+        {
+            okiagariRef = Instantiate(okiagariObj, startPos.position, Quaternion.identity);
+            okiagariRef.GetComponent<Okiagari>().MoveToHome().Forget();
+        }
     }
 
     /// <summary>

@@ -33,6 +33,8 @@ public class Okiagari : MonoBehaviour
     {
         CancellationToken tkn = endSource.Token;
 
+        await UniTask.Delay(300, cancellationToken: tkn);
+
         while (true)
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, OkiagariGenerater.Instance.endPos.position, OkiagariGenerater.Instance.moveSpeed);
