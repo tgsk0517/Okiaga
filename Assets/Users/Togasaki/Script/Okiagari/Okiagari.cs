@@ -28,23 +28,30 @@ public class Okiagari : MonoBehaviour
             await UniTask.Delay(20, cancellationToken: tkn);
         }
     }
-
+    private void Start()
+    {
+        MoveToEnd().Forget();
+    }
     public async UniTask MoveToEnd()
     {
         CancellationToken tkn = endSource.Token;
 
-        await UniTask.Delay(300, cancellationToken: tkn);
-
-        while (true)
+        while(true)
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, OkiagariGenerater.Instance.endPos.position, OkiagariGenerater.Instance.moveSpeed);
-            if (gameObject.transform.position == OkiagariGenerater.Instance.endPos.position)
-            {
-                endSource.Cancel();
-                Destroy(gameObject);
-            }
-            await UniTask.Delay(20, cancellationToken: tkn);
+            await UniTask.Delay(5000, cancellationToken: tkn);
+            Capsule.Instance.ResetPos();
         }
+
+        //while (true)
+        //{
+        //    gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, OkiagariGenerater.Instance.endPos.position, OkiagariGenerater.Instance.moveSpeed);
+        //    if (gameObject.transform.position == OkiagariGenerater.Instance.endPos.position)
+        //    {
+        //        endSource.Cancel();
+        //        Destroy(gameObject);
+        //    }
+        //    await UniTask.Delay(20, cancellationToken: tkn);
+        //}
 
     }
 

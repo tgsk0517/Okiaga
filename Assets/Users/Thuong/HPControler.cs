@@ -23,7 +23,7 @@ public class HPControler : MonoBehaviour
     //}
     public void TakeDamage()// hp減らす関数
     {
-        PlayerStatus.HP -= 5;
+        PlayerStatus.HP -= 2;
         _healthBar.SetHealth(PlayerStatus.HP);
         if(PlayerStatus.HP <= 0)
         {

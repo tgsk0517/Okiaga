@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Capsule : MonoBehaviour
+public class Capsule : SingletonMonoBehaviour<Capsule>
 {
     public Transform tf;
     private Rigidbody m_Rigidbody;
@@ -18,14 +18,23 @@ public class Capsule : MonoBehaviour
     {
         m_Rigidbody.centerOfMass = tf.localPosition;
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            GetComponent<Transform>().position = new Vector3(0, 2, 0);
+            GetComponent<Transform>().position = new Vector3(0, -0.8f, 0);
             GetComponent<Transform>().rotation = new Quaternion(0, 0, 0, 0);
             m_Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             m_Rigidbody.constraints = RigidbodyConstraints.None; 
         }
         
+    }
+
+    public void ResetPos()
+    {
+        GetComponent<Transform>().position = new Vector3(0, -0.8f, 0);
+        GetComponent<Transform>().rotation = new Quaternion(0, 0, 0, 0);
+        m_Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        m_Rigidbody.constraints = RigidbodyConstraints.None;
+
     }
 
     void PositionLock()

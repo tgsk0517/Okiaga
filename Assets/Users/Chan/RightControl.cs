@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RightControl : MonoBehaviour
+public class RightControl : SingletonMonoBehaviour<RightControl>
 {
     public ParticleSystem explosionParticle;
     private Transform m_Transform;
     private Vector3 startPoint;
     public Transform hitPoint;
     private Vector3 hitPointPosition;
+
+    public float speed =0.01f;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,12 +34,12 @@ public class RightControl : MonoBehaviour
             explosionParticle.Play();
         }
     }
-    IEnumerator Move()
+    public IEnumerator Move()
     {
         for(float t = 0;t < 1.1;t += 0.1f)
         {
             m_Transform.position = Vector3.Lerp(startPoint, hitPointPosition, t);
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(speed);
         }
         m_Transform.position = startPoint; 
     }

@@ -69,7 +69,7 @@ public class NotesManager : SingletonMonoBehaviour<NotesManager>, INotificationR
 
     private void Start()
     {
-        OkiagariGenerater.Instance.GenerateOkiagari();
+        //OkiagariGenerater.Instance.GenerateOkiagari();
         ini(source.Token).Forget();
     }
 

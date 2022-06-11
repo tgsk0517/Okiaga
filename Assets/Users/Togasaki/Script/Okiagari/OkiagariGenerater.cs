@@ -31,6 +31,7 @@ public class OkiagariGenerater : SingletonMonoBehaviour<OkiagariGenerater>
     /// <summary>
     /// 現在の起き上がりオブジェクト
     /// </summary>
+    [SerializeField]
     private GameObject okiagariRef;
 
     int i = 0;
@@ -53,6 +54,7 @@ public class OkiagariGenerater : SingletonMonoBehaviour<OkiagariGenerater>
     /// </summary>
     public void DestroyOkiagari()
     {
+        //Capsule.Instance.ResetPos();
         okiagariRef.GetComponent<Okiagari>().MoveToEnd().Forget();
     }
 

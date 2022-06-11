@@ -53,6 +53,7 @@ public class Notes : MonoBehaviour,INotes
         switch(typeNum)
         {
             case 0:
+                if(transform != null)
                 transform.position = Vector3.MoveTowards(transform.position, NotesManager.Instance.endPos.position, barSpeed * Time.deltaTime);
                 break;
             case 1:
@@ -75,8 +76,10 @@ public class Notes : MonoBehaviour,INotes
     {
         attackNum--;
         NotesManager.Instance.beatedOkiagari++;
-        OkiagariGenerater.Instance.DestroyOkiagari();
-        OkiagariGenerater.Instance.GenerateOkiagari();
+        //OkiagariGenerater.Instance.DestroyOkiagari();
+        RightControl.Instance.StartCoroutine("Move");
+        //OkiagariGenerater.Instance.GenerateOkiagari();
+
         txt.text = attackNum.ToString();
         if (attackNum <= 0)
         {
